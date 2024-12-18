@@ -1,0 +1,14 @@
+/Users/lack/Code/TinyXVA/bin/Debug/net8.0/TinyXVA
+/Users/lack/Code/TinyXVA/bin/Debug/net8.0/TinyXVA.deps.json
+/Users/lack/Code/TinyXVA/bin/Debug/net8.0/TinyXVA.runtimeconfig.json
+/Users/lack/Code/TinyXVA/bin/Debug/net8.0/TinyXVA.dll
+/Users/lack/Code/TinyXVA/bin/Debug/net8.0/TinyXVA.pdb
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/TinyXVA.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/TinyXVA.AssemblyInfoInputs.cache
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/TinyXVA.AssemblyInfo.cs
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/TinyXVA.csproj.CoreCompileInputs.cache
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/TinyXVA.dll
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/refint/TinyXVA.dll
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/TinyXVA.pdb
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/TinyXVA.genruntimeconfig.cache
+/Users/lack/Code/TinyXVA/obj/Debug/net8.0/ref/TinyXVA.dll
