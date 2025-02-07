@@ -1,4 +1,5 @@
 ﻿using CsvHandler;
+using TinyXVA.RandomNumbers;
 
 namespace TinyXVA
 {
@@ -7,8 +8,13 @@ namespace TinyXVA
 		static void Main(string[] args)
 		{ 
 			// const string filepath = @"/Users/lack/Code/TestingMaterials/testWrite.csv";	
-			string[] randomNumbers = StandardGaussianNumberGenerator.DrawSamples(43).Select(a => a.ToString()).ToArray();
-			Console.WriteLine(String.Join(",", randomNumbers));
+			double[] timeVals = new double[100];
+			for (int i =0; i < 100; i++)
+				timeVals[i] =  0.1 * i;
+			
+			GeometricBrownianMotionGenerator gbmGenerator = new GeometricBrownianMotionGenerator(0.1, 0.2, timeVals, 10);
+			Dictionary<double, double> gbmRealization = gbmGenerator.Simulate();
+			Console.WriteLine(String.Join(";", gbmRealization.Values));
 		}
 	}	
 }
