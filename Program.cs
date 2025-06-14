@@ -8,13 +8,18 @@ namespace TinyXVA
 		static void Main(string[] args)
 		{ 
 			// const string filepath = @"/Users/lack/Code/TestingMaterials/testWrite.csv";	
-			double[] timeVals = new double[100];
-			for (int i =0; i < 100; i++)
-				timeVals[i] =  0.1 * i;
+			const int numOfPoints = 750;
+			double[] timeVals = new double[numOfPoints];
+			for (int i =0; i < timeVals.Length; i++)
+				timeVals[i] =  1.0/numOfPoints * i;
 			
-			GeometricBrownianMotionGenerator gbmGenerator = new GeometricBrownianMotionGenerator(0.1, 0.2, timeVals, 10);
-			Dictionary<double, double> gbmRealization = gbmGenerator.Simulate();
-			Console.WriteLine(String.Join(";", gbmRealization.Values));
+			var hestonModel = new HestonModelGenerator(0.5, 0.16, 0.2, timeVals, 0.4);
+			var monteCarloTest = new MonteCarloSimulation(hestonModel);
+			monteCarloTest.GenerateTrajectories(10);
+			var testing = monteCarloTest.SimulatedTrajectories;
+			Console.WriteLine("Testing.");
+			// Dictionary<double, double> gbmRealization = hestonModel.Simulate();
+			// Console.WriteLine(String.Join(";", gbmRealization.Values));
 		}
 	}	
 }

@@ -88,4 +88,52 @@ namespace TinyXVA.RandomNumbers
            return TimeValues.Zip(realization).ToDictionary(a => a.First, a => a.Second);
         }
     }
+
+    public class HestonModelGenerator: IStochasticProcess
+    { 
+        public double[] TimeValues { get; }
+        
+        private double _meanReversionSpeed; 
+        private readonly double _startingValue; 
+        private double _longTermMean;
+        private double _volOfVol;
+
+        public HestonModelGenerator(
+            double meanReversionSpeed,
+            double longTermMean,
+            double volOfVol,
+            double[] timeValues,
+            double startingValue)
+        { 
+            TimeValues = timeValues;
+            
+            _meanReversionSpeed = meanReversionSpeed; 
+            _startingValue = startingValue; 
+            _longTermMean = longTermMean;
+            _volOfVol = volOfVol;
+            
+            bool fellerCondition = 2*_meanReversionSpeed*_longTermMean <= _volOfVol * _volOfVol; 
+            if (fellerCondition)
+                Console.WriteLine("WARNING: Heston model initialization parameters violate the Feller condition.");
+        }
+         
+         public Dictionary<double, double> Simulate()
+         {
+             
+             double[] gaussianNumbers = StandardGaussianNumberGenerator.DrawSamples(TimeValues.Length - 1);
+             double[] realization = new double[TimeValues.Length];
+             realization[0] = _startingValue;
+             
+             for (int i = 1; i < TimeValues.Length; i++)
+             {
+                 double timeIncrement = TimeValues[i] - TimeValues[i - 1];
+                 double stochasticComponent= _volOfVol*Math.Sqrt(timeIncrement)*gaussianNumbers[i -1];
+                 double driftComponent = _meanReversionSpeed * (_longTermMean - realization[i - 1]) * timeIncrement;
+                     
+                 realization[i] = realization[i-1] + driftComponent + stochasticComponent;
+             }
+             
+             return TimeValues.Zip(realization).ToDictionary(a => a.First, a => a.Second);
+         }
+    }
 }
